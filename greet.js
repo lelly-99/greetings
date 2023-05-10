@@ -7,21 +7,31 @@ var helloName = document.querySelector(".helloName");
 //refences to counter
 var counter = document.querySelector(".counter");
 //reference to radio button
-var selectLanguage = document.querySelector(".language:checked");
-var greetLanguage = document.querySelector(".greetLanguage");
+var languageRadios = document.querySelectorAll('.language');
 
 function greet(){
     var nameEntered = enteredName.value
     //ensure that user input name only contains alphaphets
     var validateName = nameEntered.match(/^[A-Za-z]+$/)
     //if the name enetered is valid it should return it 
-    if(validateName){
-        helloName.innerHTML = "Hello " + validateName;
+    //
+    var selectedLanguage = document.querySelector('input[name="language"]:checked');
+    if(validateName && selectedLanguage.value === 'english'){
+        helloName.innerHTML = "Hi " + validateName;
+
+    }else if(validateName && selectedLanguage.value === 'xhosa'){
+        helloName.innerHTML = "Molo " + validateName;
+
+    }else if(validateName && selectedLanguage.value === 'afrikaans'){
+        helloName.innerHTML = "Hallo " + validateName;
+    
+    }else if(validateName && selectedLanguage.value === 'afrikaans'){
+        helloName.innerHTML = "Hallo " + validateName;
     //if the name if not valid is should return "Enter a valid name"   
     }else if(!validateName){
         helloName.innerHTML = "Enter a valid name";
     }
-
+    
     if(validateName){
         counter.innerHTML++
     }
