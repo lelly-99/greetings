@@ -13,7 +13,7 @@ div {
     font-weight: 100;
 }
 
-.notValidName, .noSelectedOption {
+.notValidNameError, .noSelectedLanguageError {
     color: red;
     font-weight: bolder;
 }
