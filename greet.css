@@ -1,7 +1,6 @@
 body {
     background-color: rgb(72, 175, 203);
-    margin: auto;
-    padding-left: 500px;
+    text-align: center;
 }
 
 div {
@@ -9,5 +8,12 @@ div {
 }
 
 .counter {
-    font-size: 40px;
+    padding: 20px;
+    font-size: 50px;
+    font-weight: 100;
+}
+
+.notValidName, .noSelectedOption {
+    color: red;
+    font-weight: bolder;
 }
