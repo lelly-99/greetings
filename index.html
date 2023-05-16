@@ -1,35 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="greet.css">
-    <title>Greetings</title>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/3.5.0/chai.min.js"></script>
 </head>
+
 <body>
-    <h1>Greetings</h1>
-    <div>
-        <label>Name:</label>
-        <input type="text" name="" value="" class="enteredName">
-        <p class="counter" style="display: inline;">0</p>
-        <p class="notValidNameError"></p>
-    </div>
-    <div class="box-radio">
-        <input type="radio" name="language" value="english" class="language">
-        <label for="english">English</label>
-        <input type="radio" name="language" value="xhosa" class="language">
-        <label for="xhosa">isiXhosa</label>
-        <input type="radio" name="language" value="afrikaans" class="language">
-        <label for="sepedi">Afrikaans</label>
-        <p class="noSelectedLanguageError"></p>
-    </div>
-    <div>
-        <button class="greetButton" type="button" name="button" >Greet</button>
-    </div>
-    <div>
-        <h3 class="helloName"></h3>
-    </div>
+    <h1 style="text-align: center; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Unit tests for Greeting Factory Functions</h1>
+    <div id="mocha"></div>
+    <script>
+        mocha.setup('bdd');
+        var assert = chai.assert;
+    </script>
+    <!-- the functions to be tested -->
+    <script src="/factory-function/greet.js" charset="utf-8"></script>
+
+    <!-- the test functions -->
+    <script src="/test/greet.test.js"></script>
+
+    <script>
+        mocha.checkLeaks();
+        mocha.run();
+    </script>
 </body>
-<script src="greet.js"></script>
+
 </html>

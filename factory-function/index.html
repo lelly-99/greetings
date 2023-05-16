@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="greet.css">
+    <title>Greetings</title>
+</head>
+<body>
+    <h1>Greetings</h1>
+    <div>
+        <label>Name:</label>
+        <input type="text" name="" value="" class="enteredName">
+        <p class="counter" style="display: inline;">0</p>
+        <p class="notValidNameError"></p>
+    </div>
+    <div class="box-radio">
+        <input type="radio" name="language" value="english" class="language">
+        <label for="english">English</label>
+        <input type="radio" name="language" value="xhosa" class="language">
+        <label for="xhosa">isiXhosa</label>
+        <input type="radio" name="language" value="afrikaans" class="language">
+        <label for="sepedi">Afrikaans</label>
+        <p class="errorMessage"></p>
+    </div>
+    <div>
+        <button class="greetButton" type="button" name="button" >Greet</button>
+    </div>
+    <div>
+        <h3 class="helloName"></h3>
+    </div>
+    <div>
+        <button class="resetCounterButton" type="button" name="button" >Reset counter</button>
+    </div>
+</body>
+<script src="/factory-function/greet.js"></script>
+<script src="/js/greet.js"></script>
+</html>

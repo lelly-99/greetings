@@ -12,20 +12,16 @@ var languageRadios = document.querySelectorAll('.language');
 var errorMessage = document.querySelector(".errorMessage")
 //reference to reset counter
 var resetCounterButton = document.querySelector(".resetCounterButton");
-function greet(){
-    var nameEntered = enteredName.value
-    //ensure that user input name only contains alphaphets
-    var validateName = 
-    //if the name enetered is valid it should return it 
-    var selectedLanguage = document.querySelector('input[name="language"]:checked');
 
-}
+const greetingFunction = greet();
 
 greetButton.addEventListener("click", function(){
-    greet();
-    enteredName.value = ""
+    var nameEntered = enteredName.value
+    //if the name enetered is valid it should return it 
+    var selectLanguage = document.querySelector('input[name="language"]:checked');
+
 });
 
 resetCounterButton.addEventListener("click", function(){
-    counter.innerHTML = 0;
+    //counter.innerHTML = 0;
 });
