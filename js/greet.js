@@ -14,14 +14,20 @@ var errorMessage = document.querySelector(".errorMessage")
 var resetCounterButton = document.querySelector(".resetCounterButton");
 
 const greetingFunction = greet();
+var userNames = greetingFunction.getNames() || JSON.parse(localStorage.getItem("userNames"))
+var greetCounter = parseInt(localStorage.getItem("greetCounter")) || 0
 
-greetButton.addEventListener("click", function(){
+greetButton.addEventListener("click", function () {
+
+    counter.innerHTML = greetCounter
+
+    
     var nameEntered = enteredName.value
     //if the name enetered is valid it should return it 
     var selectLanguage = document.querySelector('input[name="language"]:checked');
 
 });
 
-resetCounterButton.addEventListener("click", function(){
+resetCounterButton.addEventListener("click", function () {
     //counter.innerHTML = 0;
 });
