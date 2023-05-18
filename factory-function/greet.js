@@ -1,4 +1,4 @@
-function greet(){
+function greet() {
     var counter = 0;
     var userLanguage = '';
     var userNames = [];
@@ -6,74 +6,72 @@ function greet(){
     var error = ""
     var greetings = ""
 
-    function getName(name){
-        userName = name;
+    function getName(name) {
+        userName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
         return userName;
     }
 
-    function getLanguage(language){
+    function getLanguage(language) {
         userLanguage = language;
         return userLanguage;
     }
 
-    function getCounter(){
+    function getCounter() {
         return counter;
     }
 
-    function getNames(){
+    function getNames() {
         return userNames;
     }
 
-    function greetUser(name, language){
-        if(name.match(/^[A-Za-z]+$/) && !userNames.includes(name.match(/^[A-Za-z]+$/)) && language !== null){
-            addName(name.match(/^[A-Za-z]+$/))
 
-            if(language === 'english'){
-                greetings = "Hi " + name;
-            }
-            else if(language === 'afrikaans'){
-                greetings = "Hallo " + name;
-            }
-            else if(language === 'xhosa'){
-                greetings = "Molo " + name;
-            }
+    function greetUser() {
+        if (userName.match(/^[A-Za-z]+$/) && !getNames().includes(userName) && userLanguage !== "") {
+            addName();
+            increment();
 
+            if (userLanguage === "english") {
+                greetings = "Hi " + userName;
+            } else if (userLanguage === "afrikaans") {
+                greetings = "Hallo " + userName;
+            } else if (userLanguage === "xhosa") {
+                greetings = "Molo " + userName;
+            }
             return greetings;
-        } 
+        }
     }
 
-    function errorMessage(name, language){
-        if(!name.match(/^[A-Za-z]+$/) && language === null){
-            error = 'Enter a valid name and  select a language';
-        }
-        else if(language === null){
-            error = 'Select a language'
-        }
-        else if(!name.match(/^[A-Za-z]+$/)){
-            error = 'Enter a valid name'
-        }else [
+    function errorMessage() {
+        if (userName.match(/^[A-Za-z]+$/) && getNames().includes(userName)) {
+            error = "Name already exists!";
+        } else if (!userName.match(/^[A-Za-z]+$/) && userLanguage === "") {
+            error = "Enter a valid name and select a language";
+        } else if (userLanguage === "") {
+            error = "Select a language";
+        } else if (!userName.match(/^[A-Za-z]+$/)) {
+            error = "Enter a valid name";
+        } else{
             error = ""
-        ]
-
-        return error
-    }
-    function increment(){
-        if(greetings && addName()){
-            counter++;
         }
+
+        return error;
+    }
+
+    function increment() {
+        counter++
         return counter
     }
 
-    function addName(name){
-        return userNames.push(getName(name));
+    function addName() {
+        getNames().push(getName(userName));
     }
 
-    function resetCounter(){
+    function resetCounter() {
         counter = 0;
         return counter;
     }
 
-    return{
+    return {
         greetUser,
         getCounter,
         getNames,
@@ -82,6 +80,6 @@ function greet(){
         getName,
         getLanguage,
         resetCounter,
-        errorMessage
+        errorMessage,
     }
 }

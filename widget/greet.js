@@ -1,33 +1,64 @@
-//reference to the input name
-var enteredName = document.querySelector(".enteredName");
-//reference to greet button
-var greetButton = document.querySelector(".greetButton");
-//references to output name
-var helloName = document.querySelector(".helloName");
-//refences to counter
-var counter = document.querySelector(".counter");
-//reference to radio button
-var languageRadios = document.querySelectorAll('.language');
-//refence to valid inputs message
-var errorMessage = document.querySelector(".errorMessage")
-//reference to reset counter
-var resetCounterButton = document.querySelector(".resetCounterButton");
 
-const greetingFunction = greet();
-var userNames = greetingFunction.getNames() || JSON.parse(localStorage.getItem("userNames"))
-var greetCounter = parseInt(localStorage.getItem("greetCounter")) || 0
+const enteredName = document.querySelector('.enteredName');
+const counter = document.querySelector('.counter');
+const languageOptions = document.querySelectorAll('.language');
+const errorMessageElem = document.querySelector('.errorMessage');
+const greetButton = document.querySelector('.greetButton');
+const helloName = document.querySelector('.helloName');
+const resetCounterButton = document.querySelector('.resetCounterButton');
 
-greetButton.addEventListener("click", function () {
+// Create a new greet instance
+const greetFunction = greet();
 
-    counter.innerHTML = greetCounter
+//check for the selected radio button
+function getSelectedLanguage() {
+    var selectedLanguage = '';
+    languageOptions.forEach(function (radio) {
+      if (radio.checked) {
+        selectedLanguage = radio.value;
+      }
+    });
+    return selectedLanguage;
+  }
 
-    
-    var nameEntered = enteredName.value
-    //if the name enetered is valid it should return it 
-    var selectLanguage = document.querySelector('input[name="language"]:checked');
+
+// Event listener for greet button click
+greetButton.addEventListener('click', function () {
+    var name = enteredName.value;
+    var language = getSelectedLanguage();
+    greetFunction.getName(name);
+    greetFunction.getLanguage(language);
+    var greeting = greetFunction.greetUser();
+    var errorMessage = greetFunction.errorMessage();
+    var namesStored = localStorage.getItem("namesGreeted")
+    var names = namesStored ? JSON.parse(namesStored) : [];
+
+    //greet user function if called
+    if (greeting) {
+        enteredName.value = ""
+        helloName.innerHTML = greeting;
+        counter.innerHTML = greetFunction.getCounter();
+        errorMessageElem.innerHTML = ""
+        names.push(name);
+        localStorage.setItem("namesGreeted", JSON.stringify(name))
+    //error message function is called
+    }else if(errorMessage) {
+        errorMessageElem.innerHTML = errorMessage;
+        helloName.innerHTML = '';
+    } else {
+        errorMessageElem.innerHTML = '';
+    }
+
+    languageOptions.forEach(option => {
+        option.checked = false;
+    });
+
+    enteredName.value = ""
 
 });
 
-resetCounterButton.addEventListener("click", function () {
-    //counter.innerHTML = 0;
+// Event listener for reset counter button click
+resetCounterButton.addEventListener('click', function () {
+    const resetCount = greetFunction.resetCounter();
+    counter.innerHTML = resetCount;
 });
