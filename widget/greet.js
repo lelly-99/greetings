@@ -8,7 +8,7 @@ const helloName = document.querySelector('.helloName');
 const resetCounterButton = document.querySelector('.resetCounterButton');
 
 // Create a new greet instance
-const greetFunction = greet();
+const greetFunction =  greet();
 
 //check for the selected radio button
 function getSelectedLanguage() {
