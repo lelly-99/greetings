@@ -34,3 +34,9 @@ button {
 button:hover {
     box-shadow: none;
 }
+
+.enteredName {
+    height: 25px;
+    border-radius: 8px;
+
+}

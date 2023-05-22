@@ -48,8 +48,7 @@ greetButton.addEventListener('click', function () {
             location.reload();
           }, 2000);
       }
-    }
-    if (errorMessage) {
+    }else if (errorMessage) {
       errorMessageElem.innerHTML = errorMessage;
       helloName.innerHTML = '';
       setTimeout(() => {
@@ -61,8 +60,12 @@ greetButton.addEventListener('click', function () {
     languageOptions.forEach(option => {
       option.checked = false;
     });
+
+    
+    enteredName.value !== '';
   
-    enteredName.value = '';
+
+
   });
   
   resetCounterButton.addEventListener('click', function () {
