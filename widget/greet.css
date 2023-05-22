@@ -1,10 +1,7 @@
 body {
     background-color: rgb(72, 175, 203);
     text-align: center;
-}
-
-div {
-    padding: 10px;
+    padding-bottom: 10px;
 }
 
 .counter {
@@ -16,4 +13,24 @@ div {
 .errorMessage {
     color: red;
     font-weight: bolder;
+    font-size: larger;
+}
+
+.green {
+    color: green;
+    font-size: xx-large;
+}
+
+.red {
+    color: red;
+    font-size: xx-large;
+}
+
+button {
+    box-shadow: 0 0 1rem black;
+    transition: 5s ease;
+}
+
+button:hover {
+    box-shadow: none;
 }

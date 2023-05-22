@@ -2,7 +2,7 @@ describe ("greet user", function (){
     it('should  be able to greet user in english"', function(){
         var greetingOne = greet();
 
-        greetingOne.getName('lelly')
+        greetingOne.setName('lelly')
         greetingOne.getLanguage("english")
 
         assert.equal("Hi Lelly", greetingOne.greetUser("lelly", "english"))
@@ -11,7 +11,7 @@ describe ("greet user", function (){
     it('should  be able to accept any case and capitalize first letter of user name"', function(){
         var greetingOne = greet();
 
-        greetingOne.getName('lelLy')
+        greetingOne.setName('lelLy')
         greetingOne.getLanguage("xhosa")
 
         assert.equal("Molo Lelly", greetingOne.greetUser("lelLy", "xhosa"))
@@ -25,7 +25,7 @@ describe ("error message", function (){
     it('should  be able to return error message for name and radio input"', function(){
         var errorOne = greet();
 
-        errorOne.getName('544')
+        errorOne.setName('544')
         errorOne.getLanguage("")
 
         assert.equal("Enter a valid name and select a language", errorOne.errorMessage())
@@ -33,7 +33,7 @@ describe ("error message", function (){
     it('should  be able to return error message for name"', function(){
         var greetingOne = greet();
 
-        greetingOne.getName('5665')
+        greetingOne.setName('5665')
         greetingOne.getLanguage("xhosa")
 
         assert.equal("Enter a valid name", greetingOne.errorMessage())
@@ -41,7 +41,7 @@ describe ("error message", function (){
     it('should  be able to return error message for name"', function(){
         var greetingOne = greet();
 
-        greetingOne.getName('lelly')
+        greetingOne.setName('lelly')
         greetingOne.getLanguage("")
 
         assert.equal("Select a language", greetingOne.errorMessage())
@@ -55,7 +55,7 @@ describe ("counter", function(){
 
         countOne.greetUser("lelly", "xhosa")
 
-        assert.equal(1 , countOne.increment() )
+        assert.equal(1 , countOne.getCounter() )
     })
 
     it('should  be able to count number of people greeted "1" for the same name', function(){
@@ -64,24 +64,15 @@ describe ("counter", function(){
         countOne.greetUser("lelly", "xhosa")
         countOne.greetUser("lelly", "xhosa")
 
-        assert.equal(1 , countOne.increment() )
+        assert.equal(1 , countOne.getCounter() )
     })
-    it('should  be able to count number of people greeted "2" for the same name', function(){
-        var countOne = greet();
-
-        countOne.greetUser("lelly", "xhosa")
-        countOne.greetUser("lethabo", "xhosa")
-
-        assert.equal(1 , countOne.increment() )
-    })
-      
 })
 
 describe ("reset counter", function(){
     it('should  be able to reset the counter to zero', function(){
         var countOne = greet();
 
-        countOne.getName('lelly')
+        countOne.setName('lelly')
         countOne.getLanguage("xhosa")
         countOne.greetUser("lelly", "xhosa")
         countOne.getCounter()

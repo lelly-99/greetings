@@ -1,4 +1,3 @@
-
 const enteredName = document.querySelector('.enteredName');
 const counterElement = document.querySelector('.counter');
 const languageOptions = document.querySelectorAll('.language');
@@ -7,9 +6,14 @@ const greetButton = document.querySelector('.greetButton');
 const helloName = document.querySelector('.helloName');
 const resetCounterButton = document.querySelector('.resetCounterButton');
 
-// Create a new greet instance
-const greetFunction = greet();
 
+var existingNames = JSON.parse(localStorage.getItem("greetedNames")) || [];
+localStorage.setItem("greetedNames", JSON.stringify(existingNames));
+
+
+
+
+const greetFunction = greet(existingNames);
 //check for the selected radio button
 function getSelectedLanguage() {
     var selectedLanguage = '';
@@ -22,51 +26,56 @@ function getSelectedLanguage() {
 }
 
 
-// Event listener for greet button click
 greetButton.addEventListener('click', function () {
     var name = enteredName.value;
     var language = getSelectedLanguage();
-
-    localStorage.getItem("theNames", JSON.stringify(greetFunction.getName(name)))
-    var counter = parseInt(localStorage.getItem("greetCounter")) || 1
-
-
-
-    greetFunction.getLanguage(language);
+    greetFunction.setName(name);
+    greetFunction.setLanguage(language);
     var greeting = greetFunction.greetUser();
     var errorMessage = greetFunction.errorMessage();
-
-    //greet user function if called
+  
     if (greeting) {
-
-        counterElement.innerHTML = counter
-        counter++
-        localStorage.setItem("greetCounter", counter.toString())
-
-        enteredName.value = ""
-        helloName.innerHTML = greeting
-        //localStorage.setItem("theNames", greeting);
-        errorMessageElem.innerHTML = ""
-
-        //error message function is calledS
-    } else if (errorMessage) {
-        errorMessageElem.innerHTML = errorMessage;
-        helloName.innerHTML = '';
-    } else {
-        errorMessageElem.innerHTML = '';
+      helloName.innerHTML = greeting;
+      if (!existingNames.includes(name)) {
+        existingNames.push(name);
+        counterElement.innerHTML = existingNames.length;
+        localStorage.setItem('greetedNames', JSON.stringify(existingNames));
+      } else if(existingNames.includes(name)){
+        errorMessageElem.innerHTML = "Name already exists!"
+        helloName.innerHTML = ""
+        setTimeout(() => {
+            errorMessageElem.innerHTML = '';
+            location.reload();
+          }, 2000);
+      } 
     }
-
+    if (errorMessage) {
+      errorMessageElem.innerHTML = errorMessage;
+      helloName.innerHTML = '';
+      setTimeout(() => {
+        errorMessageElem.innerHTML = '';
+        location.reload();
+      }, 2000);
+    }
+  
     languageOptions.forEach(option => {
-        option.checked = false;
+      option.checked = false;
     });
-
-    enteredName.value = ""
-
-});
-
-// Event listener for reset counter button click
-resetCounterButton.addEventListener('click', function () {
+  
+    enteredName.value = '';
+  });
+  
+  resetCounterButton.addEventListener('click', function () {
     const resetCount = greetFunction.resetCounter();
     counterElement.innerHTML = resetCount;
-    localStorage.clear()
-});
+    existingNames = [];
+    localStorage.removeItem('greetedNames');
+    setTimeout(() => {
+      helloName.innerHTML = '';
+      location.reload();
+    }, 2000);
+    helloName.innerHTML = 'successfully cleared!';
+    helloName.classList.add('green');
+  });
+  
+
