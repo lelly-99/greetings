@@ -10,7 +10,9 @@ var resetCounterButton = document.querySelector('.resetCounterButton');
 var existingNames = JSON.parse(localStorage.getItem("greetedNames")) || [];
 localStorage.setItem("greetedNames", JSON.stringify(existingNames));
 
-
+//persist counter
+var counter = existingNames.length;
+counterElement.innerHTML = counter;
 
 
 const greetFunction = greet(existingNames);
