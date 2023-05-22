@@ -47,7 +47,7 @@ greetButton.addEventListener('click', function () {
             errorMessageElem.innerHTML = '';
             location.reload();
           }, 2000);
-      } 
+      }
     }
     if (errorMessage) {
       errorMessageElem.innerHTML = errorMessage;
@@ -69,7 +69,7 @@ greetButton.addEventListener('click', function () {
     const resetCount = greetFunction.resetCounter();
     counterElement.innerHTML = resetCount;
     existingNames = [];
-    localStorage.removeItem('greetedNames');
+    localStorage.clear();
     setTimeout(() => {
       helloName.innerHTML = '';
       location.reload();
