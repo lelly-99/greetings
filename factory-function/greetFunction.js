@@ -6,7 +6,7 @@ function greet() {
     var greet = '';
   
     function setName(name) {
-      userName = name ? name.charAt(0).toUpperCase() + name.slice(1).toLowerCase() : '';
+      userName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
       return userName;
     }
   
