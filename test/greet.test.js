@@ -22,7 +22,7 @@ describe ("greet user", function (){
 })
 
 describe ("error message", function (){
-    it('should  be able to return error message for name and radio input"', function(){
+    it('should  be able to return error message for when invalid name is entered and radio input is not selected"', function(){
         var errorOne = greet();
 
         errorOne.setName('544')
@@ -30,10 +30,26 @@ describe ("error message", function (){
 
         assert.equal("Enter a valid name and select a language", errorOne.errorMessage())
     })
-    it('should  be able to return error message for name"', function(){
+    it('should  be able to return error message for when name is  not entered and radio input is not selected"', function(){
+        var errorOne = greet();
+
+        errorOne.setName('')
+        errorOne.setLanguage("")
+
+        assert.equal("Enter a valid name and select a language", errorOne.errorMessage())
+    })
+    it('should  be able to return error message for invalid name"', function(){
         var greetingOne = greet();
 
         greetingOne.setName('5665')
+        greetingOne.setLanguage("xhosa")
+
+        assert.equal("Enter a valid name", greetingOne.errorMessage())
+    })
+    it('should  be able to return error message when name is not"', function(){
+        var greetingOne = greet();
+
+        greetingOne.setName('')
         greetingOne.setLanguage("xhosa")
 
         assert.equal("Enter a valid name", greetingOne.errorMessage())
@@ -49,24 +65,32 @@ describe ("error message", function (){
 
 })
 
-describe ("counter", function(){
-    it('should  be able to count number of people greeted "1"', function(){
+describe("counter", function() {
+    it('should be able to count number of people greeted "3" for 3 different names name', function() {
+      var countOne = greet();
+  
+      
+      countOne.addName("lelly");
+      countOne.addName("lethabo");
+      countOne.addName("letago");
+
+  
+      assert.equal(3, countOne.getCounter());
+    });
+
+    it('should be able return 1 if smae user is greeted twice or more', function() {
         var countOne = greet();
-
-        countOne.setName("lelly")
-
-        assert.equal(1 , countOne.addName() )
-    })
-
-    it('should  be able to count number of people greeted "1" for the same name', function(){
-        var countOne = greet();
-
-        countOne.greetUser("lelly", "xhosa")
-        countOne.greetUser("lelly", "xhosa")
-
-        assert.equal(1 , countOne.addName() )
-    })
-})
+    
+        
+        countOne.addName("lelly");
+        countOne.addName("lelly");
+        countOne.addName("lelly");
+        countOne.addName("lelly");
+    
+        assert.equal(1, countOne.getCounter());
+      });
+  });
+  
 
 describe ("reset counter", function(){
     it('should  be able to reset the counter to zero', function(){

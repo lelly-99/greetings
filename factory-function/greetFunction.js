@@ -27,8 +27,9 @@ function greet() {
       var userName = setName(name);
       if (!userNames.includes(userName)) {
         userNames.push(userName);
-        counter++;
+        counter = userNames.length;
       }
+      return counter
     }
   
     function greetUser() {
