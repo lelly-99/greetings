@@ -46,6 +46,9 @@ greetButton.addEventListener('click', function () {
       existingNames.push(name);
       counterElement.innerHTML = existingNames.length
       localStorage.setItem('greetedNames', JSON.stringify(existingNames));
+      if(name){
+        counterElement.innerHTML === counter
+      }
     }else {
       helloName.innerHTML = ""
       errorMessageElem.innerHTML = "Name already exists!";
@@ -81,5 +84,4 @@ resetCounterButton.addEventListener('click', function () {
   helloName.innerHTML = 'successfully cleared!';
   helloName.classList.add('green');
 });
-
 
