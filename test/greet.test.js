@@ -45,15 +45,7 @@ describe ("case sensitivity", function (){
 })
 
 
-describe ("error message and validity", function (){
-    it('should  be able to return error message for when invalid name is entered and radio input is not selected"', function(){
-        var errorOne = greet();
-
-        errorOne.setName('544')
-        errorOne.setLanguage("")
-
-        assert.equal("Enter a valid name and select a language", errorOne.errorMessage())
-    })
+describe ("error message", function (){
     it('should  be able to return error message for when name is  not entered and radio input is not selected"', function(){
         var errorOne = greet();
 
@@ -62,15 +54,7 @@ describe ("error message and validity", function (){
 
         assert.equal("Enter a valid name and select a language", errorOne.errorMessage())
     })
-    it('should  be able to return error message for invalid name"', function(){
-        var greetingOne = greet();
-
-        greetingOne.setName('5665')
-        greetingOne.setLanguage("xhosa")
-
-        assert.equal("Enter a valid name", greetingOne.errorMessage())
-    })
-    it('should  be able to return error message when name is not"', function(){
+    it('should  be able to return error message when name is not entered"', function(){
         var greetingOne = greet();
 
         greetingOne.setName('')
@@ -88,6 +72,34 @@ describe ("error message and validity", function (){
     })
 
 })
+
+describe ("Validity", function (){
+    it('should  be able to return error message when user enters numbers"', function(){
+        var errorOne = greet();
+
+        errorOne.setName('544')
+        errorOne.setLanguage("")
+
+        assert.equal("Enter a valid name and select a language", errorOne.errorMessage())
+    })
+    it('should  be able to return error message when user enters characters"', function(){
+        var errorOne = greet();
+
+        errorOne.setName('$%#$*&')
+        errorOne.setLanguage("")
+
+        assert.equal("Enter a valid name and select a language", errorOne.errorMessage())
+    })
+    it('should  be able to return error message for name with numers and characters"', function(){
+        var greetingOne = greet();
+
+        greetingOne.setName('lely@65')
+        greetingOne.setLanguage("xhosa")
+
+        assert.equal("Enter a valid name", greetingOne.errorMessage())
+    })
+})
+
 
 describe("counter", function() {
     it('should be able to count number of people greeted "3" for 3 different names name', function() {
