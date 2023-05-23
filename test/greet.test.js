@@ -7,8 +7,26 @@ describe ("greet user", function (){
 
         assert.equal("Hi Lelly", greetingOne.greetUser("lelly", "english"))
     })
+    it('should  be able to greet user in afrikaans"', function(){
+        var greetingOne = greet();
 
-    it('should  be able to accept any case and capitalize first letter of user name"', function(){
+        greetingOne.setName('lelly')
+        greetingOne.setLanguage("afrikaans")
+
+        assert.equal("Hallo Lelly", greetingOne.greetUser("lelly", "afrikaans"))
+    })
+    it('should  be able to greet user in xhosa"', function(){
+        var greetingOne = greet();
+
+        greetingOne.setName('lelly')
+        greetingOne.setLanguage("xhosa")
+
+        assert.equal("Molo Lelly", greetingOne.greetUser("lelly", "xhosa"))
+    })
+    
+})
+describe ("case sensitivity", function (){
+    it('should  be able to capitalize first letter of user name"', function(){
         var greetingOne = greet();
 
         greetingOne.setName('lelLy')
@@ -16,12 +34,18 @@ describe ("greet user", function (){
 
         assert.equal("Molo Lelly", greetingOne.greetUser("lelLy", "xhosa"))
     })
+    it('should  be able to lower cases of letters after after first letter"', function(){
+        var greetingOne = greet();
 
+        greetingOne.setName('lelLy')
+        greetingOne.setLanguage("xhosa")
 
-
+        assert.equal("Molo Lelly", greetingOne.greetUser("lelLy", "xhosa"))
+    })
 })
 
-describe ("error message", function (){
+
+describe ("error message and validity", function (){
     it('should  be able to return error message for when invalid name is entered and radio input is not selected"', function(){
         var errorOne = greet();
 
@@ -78,7 +102,7 @@ describe("counter", function() {
       assert.equal(3, countOne.getCounter());
     });
 
-    it('should be able return 1 if smae user is greeted twice or more', function() {
+    it('should be able return 1 if same user is greeted twice or more', function() {
         var countOne = greet();
     
         
@@ -89,6 +113,18 @@ describe("counter", function() {
     
         assert.equal(1, countOne.getCounter());
       });
+
+      it('should  be able to return 1 for same name with different cases"', function(){
+        var greetingOne = greet();
+
+        greetingOne.setName('lelLy')
+        greetingOne.setName('lelLy')
+        greetingOne.setName('lelLy')
+        greetingOne.setName('lelLy')
+        
+
+        assert.equal(1, greetingOne.addName(name))
+    })
   });
   
 

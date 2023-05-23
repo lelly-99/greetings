@@ -4,6 +4,7 @@ function greet() {
     var userNames = [];
     var userName = '';
     var greet = '';
+    var error = '';  
   
     function setName(name) {
       userName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
@@ -47,10 +48,8 @@ function greet() {
       }
       return greet;
     }
-  
+
     function errorMessage() {
-      var error = '';
-    //   
      if (!userName.match(/^[A-Za-z]+$/) && userLanguage === '') {
         error = 'Enter a valid name and select a language';
       } else if (userLanguage === '') {
