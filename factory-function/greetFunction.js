@@ -43,7 +43,7 @@ function greet() {
           greet = 'Hallo ' + userName;
         } else if (userLanguage === 'xhosa') {
           greet = 'Molo ' + userName;
-        }
+        } 
       }
       return greet;
     }

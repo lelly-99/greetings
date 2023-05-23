@@ -16,6 +16,7 @@ counterElement.innerHTML = counter;
 
 
 const greetFunction = greet(existingNames);
+
 //check for the selected radio button
 function getSelectedLanguage() {
   var selectedLanguage = '';
@@ -27,9 +28,11 @@ function getSelectedLanguage() {
   return selectedLanguage;
 }
 
-
+//greet button
 greetButton.addEventListener('click', function () {
-  var nameEntered = enteredName.value;
+  var nameEntered = enteredName.value
+  //name enter by use converted to uppercase for the first letter and lower case for rest of the letters
+  //in a case where use enters a same name with different cases, should be considered as name exist
   var name = nameEntered.charAt(0).toUpperCase() + nameEntered.slice(1).toLowerCase()
   var language = getSelectedLanguage();
   greetFunction.setName(name);
@@ -39,26 +42,28 @@ greetButton.addEventListener('click', function () {
 
   if (greeting) {
     helloName.innerHTML = greeting;
-    if (!existingNames.includes(name)) {
+    if (!existingNames.includes(name) && name.match(/^[A-Za-z]+$/)) {
       existingNames.push(name);
-      counterElement.innerHTML = existingNames.length;
+      counterElement.innerHTML = existingNames.length
       localStorage.setItem('greetedNames', JSON.stringify(existingNames));
-    } else {
+    }else {
       helloName.innerHTML = ""
       errorMessageElem.innerHTML = "Name already exists!";
       setTimeout(() => {
         errorMessageElem.innerHTML = '';
       }, 2000);
     }
-  } else if (errorMessage) {
+  } 
+   if (errorMessage) {
+    helloName.innerHTML = ""
     errorMessageElem.innerHTML = errorMessage;
     setTimeout(() => {
       errorMessageElem.innerHTML = '';
     }, 2000);
   }
-
+  //remmove name
   enteredName.value = '';
-
+  //remove language selection
   languageOptions.forEach(option => {
     option.checked = false;
   })
